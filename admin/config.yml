@@ -1,0 +1,401 @@
+locale: ru
+backend:
+  name: git-gateway
+  repo: sadiksites/beibarysd-preview
+  branch: main
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  # TODO: вставить DecapBridge site ID (после создания сайта в DecapBridge)
+  auth_endpoint: /sites//pkce
+  auth_token_endpoint: /sites//token
+  gateway_url: https://gateway.decapbridge.com
+  squash_merges: true
+  commit_messages:
+    create: 'CMS: создано {{slug}} — {{author-name}} <{{author-login}}> via DecapBridge'
+    update: 'CMS: изменено {{slug}} — {{author-name}} <{{author-login}}> via DecapBridge'
+    delete: 'CMS: удалено {{slug}} — {{author-name}} <{{author-login}}> via DecapBridge'
+    uploadMedia: 'CMS: фото {{path}} — {{author-name}} <{{author-login}}> via DecapBridge'
+    deleteMedia: 'CMS: удалено фото {{path}} — {{author-name}} <{{author-login}}> via DecapBridge'
+    openAuthoring: '{{message}} - {{author-name}} <{{author-login}}> via DecapBridge'
+auth:
+  email_claim: email
+  first_name_claim: first_name
+  last_name_claim: last_name
+  avatar_url_claim: avatar_url
+site_url: https://sadiksites.github.io/beibarysd-preview/
+display_url: https://sadiksites.github.io/beibarysd-preview/
+logo_url: https://sadiksites.github.io/beibarysd-preview/logo.jpg
+media_folder: img/uploads
+public_folder: img/uploads
+collections:
+- name: site
+  label: Сайт «Бейбарыс-Д»
+  editor:
+    preview: false
+  files:
+  - name: site
+    label: 🏠 Весь сайт
+    file: data/site.json
+    fields:
+    - name: hero
+      label: Главное фото (вверху)
+      widget: image
+      required: false
+    - name: h1
+      label: Главный заголовок
+      widget: object
+      collapsed: false
+      fields:
+      - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+      - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+    - name: texts
+      label: Тексты сайта
+      widget: object
+      collapsed: true
+      fields:
+      - name: brand
+        label: Название (шапка)
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: sub
+        label: Подпись под названием
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: demo
+        label: Плашка «черновик»
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: heroT
+        label: Заголовок вкладки / H1
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: heroL
+        label: Текст на главном фото
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: text, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: text, required: false}
+      - name: loc
+        label: Адрес
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: text, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: text, required: false}
+      - name: wa
+        label: Кнопка WhatsApp
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: call
+        label: Кнопка «Позвонить»
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: aboutP
+        label: Текст «О нас»
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: text, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: text, required: false}
+      - name: hours
+        label: Режим работы (полный)
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: age
+        label: Слово «лет»
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: docsNote
+        label: Примечание к документам
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: text, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: text, required: false}
+      - name: gallery
+        label: Заголовок галереи
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: foot
+        label: Подвал (©)
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: addr
+        label: Подпись «Адрес»
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: phone
+        label: Подпись «Телефон»
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: mail
+        label: Подпись «Почта»
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: wa2
+        label: Подпись «WhatsApp»
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+    - name: nav
+      label: Меню
+      widget: list
+      summary: '{{fields.kk}} / {{fields.ru}}'
+      fields:
+      - {name: id, label: Якорь (не менять), widget: string}
+      - {name: kk, label: "🇰🇿", widget: string}
+      - {name: ru, label: "🇷🇺", widget: string}
+    - name: features
+      label: Преимущества
+      widget: list
+      summary: '{{fields.title.ru}}'
+      fields:
+      - {name: icon, label: Значок (эмодзи), widget: string, required: false}
+      - name: title
+        label: Заголовок
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: text
+        label: Описание
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+    - name: groups
+      label: Группы
+      widget: list
+      summary: '{{fields.name.kk}}'
+      fields:
+      - name: name
+        label: Название
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: type
+        label: Тип группы
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - {name: age, label: Возраст, widget: string, required: false}
+      - {name: emoji, label: Эмодзи, widget: string, required: false}
+      - {name: color, label: Цвет, widget: color, required: false}
+      - {name: photo, label: Фото, widget: image, required: false}
+    - name: clubs
+      label: Кружки
+      widget: list
+      summary: '{{fields.name.kk}}'
+      fields:
+      - {name: icon, label: Код иконки (speech/abc/dance/art/doc/psy), widget: string, required: false}
+      - name: name
+        label: Название
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+    - name: price
+      label: Цены
+      widget: object
+      collapsed: true
+      fields:
+      - name: sum
+        label: Сумма / заголовок цены
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: inc
+        label: Что входит
+        widget: list
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: note
+        label: Примечание
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: text, required: false}
+        - {name: ru, label: "🇷🇺 Русский", widget: text, required: false}
+    - name: stats
+      label: Цифры в шапке героя
+      widget: list
+      fields:
+      - {name: value, label: Значение, widget: string}
+      - {name: kk, label: "🇰🇿 подпись", widget: string}
+      - {name: ru, label: "🇷🇺 подпись", widget: string, required: false}
+    - name: staff
+      label: Коллектив
+      label_singular: сотрудника
+      widget: list
+      summary: '{{fields.name.ru}}'
+      fields:
+      - name: name
+        label: ФИО
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: role
+        label: Должность
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - {name: photo, label: Фото, widget: image, required: false}
+    - name: gallery
+      label: Галерея «Наши будни»
+      label_singular: фото
+      widget: list
+      summary: '{{fields.photo}}'
+      fields:
+      - {name: photo, label: Фото, widget: image, required: false}
+      - name: caption
+        label: Подпись
+        widget: object
+        required: false
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: false}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+    - name: docs
+      label: Документы (PDF)
+      widget: list
+      summary: '{{fields.name.ru}}'
+      fields:
+      - name: name
+        label: Название
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - {name: file, label: PDF-файл, widget: file, required: false}
+    - name: news
+      label: Новости
+      label_singular: новость
+      widget: list
+      required: false
+      summary: '{{fields.date}} — {{fields.title.ru}}'
+      fields:
+      - {name: date, label: Дата, widget: datetime, format: YYYY-MM-DD, date_format: DD.MM.YYYY, time_format: false}
+      - name: title
+        label: Заголовок
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+      - name: text
+        label: Текст
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿 Қазақша", widget: text, required: true}
+        - {name: ru, label: "🇷🇺 Русский", widget: text, required: false}
+      - {name: photo, label: Фото, widget: image, required: false}
+    - name: hours_short
+      label: Часы в верхней полоске
+      widget: object
+      fields:
+      - {name: kk, label: "🇰🇿 Қазақша", widget: string, required: true}
+      - {name: ru, label: "🇷🇺 Русский", widget: string, required: false}
+    - name: wa_digits
+      label: WhatsApp цифрами (7…)
+      widget: string
+      required: false
+    - name: map
+      label: Карта 2GIS
+      widget: object
+      collapsed: true
+      fields:
+      - {name: lat, label: Широта, widget: string, required: false}
+      - {name: lon, label: Долгота, widget: string, required: false}
+      - {name: city, label: Город 2GIS, widget: string, required: false}
+      - {name: org, label: org id 2GIS, widget: string, required: false}
+      - {name: link, label: Ссылка 2GIS, widget: string, required: false}
+    - name: contact
+      label: Контакты
+      widget: object
+      fields:
+      - {name: phone, label: Телефон (как показывать), widget: string, required: false}
+      - {name: tel, label: Телефон для звонка +7…, widget: string, required: false}
+      - {name: wa, label: WhatsApp (как показывать), widget: string, required: false}
+      - {name: watel, label: WhatsApp цифрами 7…, widget: string, required: false}
+      - {name: mail, label: Почта, widget: string, required: false}
+      - {name: ig, label: Instagram (URL или @), widget: string, required: false}
+    - name: extra_texts
+      label: Тексты блоков (кружки / цены / форма / карта)
+      widget: object
+      collapsed: true
+      fields:
+      - name: join
+        label: Кнопка «Записаться»
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿", widget: string}
+        - {name: ru, label: "🇷🇺", widget: string, required: false}
+      - name: call
+        label: Кнопка «Позвонить» (короткая)
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿", widget: string}
+        - {name: ru, label: "🇷🇺", widget: string, required: false}
+      - name: priceT
+        label: Заголовок «Цены»
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿", widget: string}
+        - {name: ru, label: "🇷🇺", widget: string, required: false}
+      - name: clubsT
+        label: Заголовок «Кружки»
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿", widget: string}
+        - {name: ru, label: "🇷🇺", widget: string, required: false}
+      - name: excT
+        label: Заголовок формы записи
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿", widget: string}
+        - {name: ru, label: "🇷🇺", widget: string, required: false}
+      - name: excL
+        label: Текст под формой
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿", widget: text}
+        - {name: ru, label: "🇷🇺", widget: text, required: false}
+      - name: mapT
+        label: Заголовок карты
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿", widget: string}
+        - {name: ru, label: "🇷🇺", widget: string, required: false}
+      - name: route
+        label: Кнопка маршрута 2GIS
+        widget: object
+        fields:
+        - {name: kk, label: "🇰🇿", widget: string}
+        - {name: ru, label: "🇷🇺", widget: string, required: false}

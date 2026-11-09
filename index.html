@@ -41,7 +41,7 @@ footer{text-align:center;padding:20px;font-size:14px;opacity:.7}
 <div class="tabs" id="tabs"></div>
 <main id="top">
 <section class="hero"><div class="wrap"><div class="hcard"><span class="demo" data-t="demo"></span><h1 id="h1"></h1><p data-t="heroL"></p><div id="xcta"></div></div></div></section>
-<section><div class="wrap"><h2><i style="background:#ffe0d8">📸</i><span data-t="gallery"></span></h2><div class="mosaic xgal"><img src="img/g01.jpg" alt="" loading="lazy"><img src="img/g02.jpg" alt="" loading="lazy"><img src="img/g03.jpg" alt="" loading="lazy"><img src="img/g04.jpg" alt="" loading="lazy"><img src="img/g05.jpg" alt="" loading="lazy"><img src="img/g06.jpg" alt="" loading="lazy"><img src="img/g07.jpg" alt="" loading="lazy"><img src="img/g08.jpg" alt="" loading="lazy"></div></div></section>
+<section><div class="wrap"><h2><i style="background:#ffe0d8">📸</i><span data-t="gallery"></span></h2><div class="mosaic xgal" id="gal"></div></div></section>
 <section id="groups"><div class="wrap"><h2><i style="background:#fff1c9">🧸</i><span data-n="groups"></span></h2><ul class="tiles g" id="grp"></ul></div></section>
 <section id="about"><div class="wrap"><h2><i style="background:#d7f3ef">🏡</i><span data-n="about"></span></h2><p data-t="aboutP"></p><ul class="tiles feat" id="feats"></ul></div></section>
 <section id="clubs"><div class="wrap"><h2><i style="background:#e3e7fb">🎨</i><span data-x="clubsT"></span></h2><div id="xclubs"></div></div></section>
@@ -51,9 +51,9 @@ footer{text-align:center;padding:20px;font-size:14px;opacity:.7}
 <section id="excursion"><div class="wrap"><h2><i style="background:#d7f3ef">🗓️</i><span data-x="excT"></span></h2><div id="xexc"></div></div></section>
 <section id="contacts"><div class="wrap"><h2><i style="background:#ffe0d8">📞</i><span data-n="contacts"></span></h2><div class="cnt" id="cnt"></div><div id="xmap"></div></div></section>
 </main><footer data-t="foot"></footer>
-<script src="data.js"></script><script src="render.js"></script><script src="extra.js?v=1"></script><script>
+<script src="data.js?v=cms1"></script><script src="render.js?v=cms1"></script><script src="extra.js?v=cms1"></script><script>
 const $=id=>document.getElementById(id),R=document.documentElement,IC={clubs:'🎨',excursion:'🗓️',about:'🏡',groups:'🧸',staff:'👩‍🏫',news:'📰',docs:'📁',contacts:'📞'};
 function fit(){R.classList.remove('mob');if(innerWidth<1000){R.classList.add('mob');return}fitNav($('nav'),'mob')}
-window.render=()=>{S.i18n();document.querySelectorAll('[data-n]').forEach(e=>e.textContent=S.title(e.dataset.n));$('h1').textContent=T('heroT');$('nav').innerHTML=S.nav();$('tabs').innerHTML=D.nav.map(n=>`<a href="#${n[0]}"><i>${IC[n[0]]}</i>${n[1+L()]}</a>`).join('');$('lang').innerHTML=S.lang();$('feats').innerHTML=S.feats();$('grp').innerHTML=S.groups();$('stf').innerHTML=S.staff();$('dcs').innerHTML=S.docs();$('cnt').innerHTML=S.contacts();document.title=T('heroT');XB.fill();fit()};
-render();addEventListener('resize',fit);addEventListener('load',fit);document.fonts&&document.fonts.ready.then(fit);
+window.render=()=>{S.i18n();document.querySelectorAll('[data-n]').forEach(e=>e.textContent=S.title(e.dataset.n));$('h1').textContent=(D.h1?D.h1[L()]:T('heroT'));$('nav').innerHTML=S.nav();$('tabs').innerHTML=D.nav.map(n=>`<a href="#${n[0]}"><i>${IC[n[0]]||'•'}</i>${n[1+L()]}</a>`).join('');$('lang').innerHTML=S.lang();$('feats').innerHTML=S.feats();$('grp').innerHTML=S.groups();$('stf').innerHTML=S.staff();$('dcs').innerHTML=S.docs();$('cnt').innerHTML=S.contacts();const g=$('gal');if(g&&D.gallery&&D.gallery.length){g.innerHTML=D.gallery.map(x=>`<img src="${x[0]}" alt="${x[1+L()]||''}" loading="lazy">`).join('')}if(D.hero){const h=document.querySelector('.hero');h.style.setProperty('--heroimg',`url(${D.hero})`);h.style.backgroundImage=`url(${D.hero})`}document.title=T('heroT');XB.fill();fit()};
+render();fetch('data/site.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j){applySite(j);render()}}).catch(()=>{});addEventListener('resize',fit);addEventListener('load',fit);document.fonts&&document.fonts.ready.then(fit);
 </script></body></html>
